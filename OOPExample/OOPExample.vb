@@ -12,16 +12,20 @@ Public Class OOPExample
         'Dim cardImage As Image = My.Resources.ResourceManager.GetObject(cardName)
         'Dim currentCard As New Card
 
-        'testDeck.DealCard()
-
         Dim g As Graphics = Me.CreateGraphics
+        Dim offset% = 50
 
-        g.DrawImage(testDeck.DealCard.frontImage, 10, 10)
-        'g.DrawImage(testDeck.DealCard.frontImage, 50, 50)
-        'g.DrawImage(testDeck.DealCard.frontImage, 100, 100)
-        'g.DrawImage(testDeck.DealCard.frontImage, 150, 150)
-        'g.DrawImage(ah.frontImage, 100, 100)
+        For row = 1 To 4
+            For column = 1 To 13
+                g.DrawImage(testDeck.DealCard.frontImage, column * offset, row * offset)
+                Me.Text = testDeck.CardsLeft
+            Next
+        Next
 
         g.Dispose()
+    End Sub
+
+    Private Sub ShuffleButton_Click(sender As Object, e As EventArgs) Handles ShuffleButton.Click
+        Me.testDeck.Shuffle()
     End Sub
 End Class
